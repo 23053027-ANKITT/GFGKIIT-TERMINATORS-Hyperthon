@@ -1,0 +1,34 @@
+<form action="/submit_payment/" method="POST">
+  {% csrf_token %}
+  <!-- Hidden fields to send registration details -->
+  <input type="hidden" name="name" id="hidden-name">
+  <input type="hidden" name="roll" id="hidden-roll">
+  <input type="hidden" name="email" id="hidden-email">
+
+  <label>
+    <input type="radio" name="paymentMethod" value="creditCard" required>
+    Credit Card
+  </label><br>
+  <label>
+    <input type="radio" name="paymentMethod" value="debitCard" required>
+    Debit Card
+  </label><br>
+  <label>
+    <input type="radio" name="paymentMethod" value="upi" required>
+    UPI
+  </label><br>
+  <label>
+    <input type="radio" name="paymentMethod" value="netBanking" required>
+    Net Banking
+  </label><br>
+  <button type="submit">Proceed to Pay</button>
+</form>
+
+<script>
+  // Populate hidden fields with registration data
+  const params = new URLSearchParams(window.location.search);
+  document.getElementById('hidden-name').value = params.get('name') || '';
+  document.getElementById('hidden-roll').value = params.get('roll') || '';
+  document.getElementById('hidden-email').value = params.get('email') || '';
+  document.getElementById('hidden-phone').value = params.get('phone') || '';
+</script>
